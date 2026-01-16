@@ -9,6 +9,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 
+import static org.testng.Assert.assertFalse;
 import static org.testng.AssertJUnit.assertTrue;
 
 public class SuiteFirst {
@@ -29,6 +30,13 @@ public void setUpClass() {
         driver.get("https://www.google.com/");
 
         assertTrue(driver.findElement(By.cssSelector("svg[aria-label='Google']")).isDisplayed());
+    }
+
+    @Test
+    public void test2() {
+        driver.get("https://www.google.com/");
+
+        assertFalse(driver.findElement(By.cssSelector("svg[aria-label='Google']")).isDisplayed());
     }
 
     @AfterClass
