@@ -7,7 +7,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 
 
@@ -43,8 +42,7 @@ public void setUpClass() {
         assertTrue(driver.findElement(By.cssSelector("svg[aria-label='Google']")).isDisplayed());
     }
 
-    @Ignore
-    @Test
+    @Test(enabled = false)
     public void test2() {
         driver.get("https://www.google.com/");
 
