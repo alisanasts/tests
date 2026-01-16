@@ -1,5 +1,6 @@
 package org.tests;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -19,8 +20,17 @@ public class SuiteFirst {
     WebDriver driver;
 @BeforeClass
 public void setUpClass() {
+
+    WebDriverManager.chromedriver().setup();
+
     ChromeOptions options = new ChromeOptions();
-    options.addArguments("--start-maximized");
+    if (System.getenv("CI") != null) {
+        options.addArguments("--headless=new");
+    }  // або "--headless"
+    options.addArguments("--no-sandbox");
+    options.addArguments("--disable-dev-shm-usage");
+    options.addArguments("--disable-gpu");
+    options.addArguments("--window-size=1920,1080");
 
     // Initialize the ChromeDriver
     driver = new ChromeDriver(options);
