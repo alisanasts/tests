@@ -1,5 +1,10 @@
 name: Java Tests (TestNG)
 
+permissions:
+  checks: write
+  pull-requests: write
+  contents: read
+
 on:
   push:
     branches: [ "main" ]
