@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
-public class SuiteSecondPW {
+public class SuiteSecondPWTest {
 
     static Playwright playwright;
     static Browser browser;
