@@ -1,38 +1,40 @@
 package org.tests;
 
 import com.microsoft.playwright.*;
-import org.testng.annotations.*;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Test;
 
-import static org.testng.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 public class SuiteSecondPW {
 
-    Playwright playwright;
-    Browser browser;
+    static Playwright playwright;
+    static Browser browser;
     BrowserContext context;
     Page page;
 
-    @BeforeSuite
-     void launchBrowser() {
+    @BeforeAll
+    static void launchBrowser() {
         playwright = Playwright.create();
         browser = playwright.chromium().launch(
-                new BrowserType.LaunchOptions().setHeadless(false)
+                new BrowserType.LaunchOptions().setHeadless(true)
         );
     }
 
-    @AfterSuite
-     void closeBrowser() {
+    @AfterAll
+     static void closeBrowser() {
         browser.close();
         playwright.close();
     }
 
-    @BeforeMethod
+    @BeforeEach
     void createContext() {
         context = browser.newContext();
         page = context.newPage();
     }
 
-    @AfterMethod
+    @AfterEach
     void closeContext() {
         context.close();
     }
