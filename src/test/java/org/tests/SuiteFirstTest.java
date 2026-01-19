@@ -1,13 +1,14 @@
 package org.tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
 
 
 import static org.testng.Assert.assertFalse;
@@ -16,9 +17,9 @@ import static org.testng.AssertJUnit.assertTrue;
 public class SuiteFirstTest {
 
 
-    WebDriver driver;
-@BeforeClass
-public void setUpClass() {
+   static WebDriver driver;
+@BeforeAll
+public static void setUpClass() {
 
     WebDriverManager.chromedriver().setup();
 
@@ -36,21 +37,22 @@ public void setUpClass() {
 }
 
     @Test
-    public void test1() {
+    public void shouldOpenGoogleSite() {
         driver.get("https://www.google.com/");
 
         assertTrue(driver.findElement(By.cssSelector("svg[aria-label='Google']")).isDisplayed());
     }
 
-    @Test(enabled = false)
-    public void test2() {
+    @Disabled
+    @Test
+    public void shouldNotOpenGoogleSite() {
         driver.get("https://www.google.com/");
 
         assertFalse(driver.findElement(By.cssSelector("svg[aria-label='Google']")).isDisplayed());
     }
 
-    @AfterClass
-    public void tearDownClass() {
+    @AfterAll
+    public static void tearDownClass() {
         driver.quit();
     }
 }
